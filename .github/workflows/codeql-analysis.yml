@@ -40,7 +40,7 @@ jobs:
           # you can specify the version after `-` like "llvm-13.0.0".
           - gcc-14
         generator:
-          - "Ninja Multi-Config"
+          - "Ninja"
         build_type:
           - Debug
         packaging_maintainer_mode:
