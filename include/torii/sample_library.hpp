@@ -1,7 +1,8 @@
-#ifndef SAMPLE_LIBRARY_HPP
-#define SAMPLE_LIBRARY_HPP
+#pragma once
 
 #include <torii/sample_library_export.hpp>
+#include <libssh/libssh.h>
+#include <libssh/server.h>
 
 [[nodiscard]] SAMPLE_LIBRARY_EXPORT int factorial(int) noexcept;
 
@@ -11,5 +12,3 @@
 
   return input * factorial_constexpr(input - 1);
 }
-
-#endif

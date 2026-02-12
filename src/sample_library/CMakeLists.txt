@@ -12,6 +12,12 @@ target_link_libraries(sample_library PRIVATE torii_options torii_warnings)
 target_include_directories(sample_library ${WARNING_GUARD} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
                                                                   $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>)
 
+if (TARGET libssh_dep)
+  target_link_libraries(sample_library PRIVATE libssh_dep)
+else ()
+message(FATAL_ERROR "libssh dependency not added")
+endif ()
+
 if (torii_BUILD_FUZZ_TESTS)
   target_link_libraries(sample_library PRIVATE -fsanitize=fuzzer-no-link)
   target_compile_options(sample_library PRIVATE -fsanitize=fuzzer-no-link)
