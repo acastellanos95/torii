@@ -12,8 +12,11 @@ target_link_libraries(sample_library PRIVATE torii_options torii_warnings)
 target_include_directories(sample_library ${WARNING_GUARD} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
                                                                   $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>)
 
-if (TARGET libssh_dep)
-  target_link_libraries(sample_library PRIVATE libssh_dep)
+if (TARGET ssh)
+#  add_library(libssh INTERFACE IMPORTED)
+#  target_include_directories(libssh_dep INTERFACE ${libssh_dep_SOURCE_DIR}/include)
+#  target_compile_definitions(libssh_dep INTERFACE LIBSSH_STATIC=1)
+  target_link_libraries(sample_library PRIVATE ssh)
 else ()
 message(FATAL_ERROR "libssh dependency not added")
 endif ()

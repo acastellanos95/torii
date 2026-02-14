@@ -10,8 +10,7 @@ function(torii_setup_dependencies)
 
 #  set(LIBSSH_STATIC 1)
   cpmaddpackage(
-          NAME
-          libssh_dep
+          libssh
           GIT_REPOSITORY
           "https://git.libssh.org/projects/libssh.git"
           GIT_TAG
@@ -22,12 +21,8 @@ function(torii_setup_dependencies)
           "BUILD_SHARED_LIBS OFF" # Ensure static build
   )
 
-  if(NOT libssh_dep_ADDED)
+  if(NOT libssh_ADDED)
     message(FATAL_ERROR "libssh dependency not added by CPM")
-  else()
-    add_library(libssh_dep INTERFACE IMPORTED)
-    target_include_directories(libssh_dep INTERFACE ${libssh_dep_SOURCE_DIR}/include)
-    target_compile_definitions(libssh_dep INTERFACE LIBSSH_STATIC=1)
   endif()
 
 #  if(NOT TARGET fmtlib::fmtlib)
