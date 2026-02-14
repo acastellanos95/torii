@@ -7,6 +7,21 @@ function(torii_setup_dependencies)
 
   # For each dependency, see if it's
   # already been provided to us by a parent project
+set(LIBSSH_STATIC 1)
+  cpmaddpackage(
+          NAME
+          libssh
+          URL
+          "https://git.libssh.org/projects/libssh.git/snapshot/stable-0.11.zip"
+          OPTIONS
+          "WITH_EXAMPLES OFF"
+          "WITH_TESTING OFF"
+          "BUILD_SHARED_LIBS OFF" # Ensure static build
+  )
+
+  if(NOT libssh_ADDED)
+    message(FATAL_ERROR "libssh dependency not added by CPM")
+  endif()
 
 #  if(NOT TARGET fmtlib::fmtlib)
 #    cpmaddpackage("gh:fmtlib/fmt#12.1.0")

@@ -1,34 +1,20 @@
 include(GenerateExportHeader)
 
-
 add_library(sample_library sample_library.cpp)
 add_library(torii::sample_library ALIAS sample_library)
 
-target_link_libraries(sample_library PRIVATE torii_options torii_warnings)
+target_link_libraries(sample_library PRIVATE torii_options torii_warnings ssh)
 
 target_include_directories(sample_library ${WARNING_GUARD} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-                                                                  $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>)
+                                                                  $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>
+                                                                  ${libssh_SOURCE_DIR}/include)
 
-cpmaddpackage(
-        NAME
-        libssh
-        URL
-        "https://git.libssh.org/projects/libssh.git/snapshot/stable-0.11.zip"
-        OPTIONS
-        "WITH_EXAMPLES OFF"
-        "WITH_TESTING OFF"
-        "BUILD_SHARED_LIBS OFF" # Ensure static build
-)
 
-if(NOT libssh_ADDED)
-  message(FATAL_ERROR "libssh dependency not added by CPM")
-endif()
-
-  add_library(libssh INTERFACE IMPORTED)
-  target_include_directories(libssh INTERFACE ${libssh_SOURCE_DIR}/include)
-  target_include_directories(libssh INTERFACE ${libssh_BINARY_DIR}/include)
-  target_compile_definitions(libssh INTERFACE LIBSSH_STATIC=1)
-  target_link_libraries(sample_library PRIVATE libssh)
+#  add_library(libssh INTERFACE IMPORTED)
+#  target_include_directories(libssh INTERFACE ${libssh_SOURCE_DIR}/include)
+#  target_include_directories(libssh INTERFACE ${libssh_BINARY_DIR}/include)
+#  target_compile_definitions(libssh INTERFACE LIBSSH_STATIC=1)
+#  target_link_libraries(sample_library PRIVATE libssh)
 
 if (torii_BUILD_FUZZ_TESTS)
   target_link_libraries(sample_library PRIVATE -fsanitize=fuzzer-no-link)
