@@ -7,6 +7,7 @@ target_link_libraries(sample_library PRIVATE torii_options torii_warnings ssh)
 
 target_include_directories(sample_library ${WARNING_GUARD} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
                                                                   $<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>
+                                                                  ${libssh_BINARY_DIR}/include
                                                                   ${libssh_SOURCE_DIR}/include)
 
 
