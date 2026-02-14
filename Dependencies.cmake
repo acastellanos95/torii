@@ -8,13 +8,11 @@ function(torii_setup_dependencies)
   # For each dependency, see if it's
   # already been provided to us by a parent project
 
-#  set(LIBSSH_STATIC 1)
   cpmaddpackage(
+          NAME
           libssh
-          GIT_REPOSITORY
-          "https://git.libssh.org/projects/libssh.git"
-          GIT_TAG
-          "libssh-0.11.3"
+          URL
+          "https://git.libssh.org/projects/libssh.git/snapshot/stable-0.11.zip"
           OPTIONS
           "WITH_EXAMPLES OFF"
           "WITH_TESTING OFF"
