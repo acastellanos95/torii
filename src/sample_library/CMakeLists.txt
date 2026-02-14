@@ -14,7 +14,7 @@ target_include_directories(sample_library ${WARNING_GUARD} PUBLIC $<BUILD_INTERF
 
 if (TARGET ssh)
 #  add_library(libssh INTERFACE IMPORTED)
-#  target_include_directories(libssh_dep INTERFACE ${libssh_dep_SOURCE_DIR}/include)
+  target_include_directories(sample_library INTERFACE ${libssh_SOURCE_DIR}/include)
 #  target_compile_definitions(libssh_dep INTERFACE LIBSSH_STATIC=1)
   target_link_libraries(sample_library PRIVATE ssh)
 else ()
