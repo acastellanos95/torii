@@ -36,7 +36,7 @@ target_link_libraries(
   tests
   PRIVATE torii::torii_warnings
           torii::torii_options
-          torii::sample_library
+          torii::torii_library
           Catch2::Catch2WithMain)
 
 torii_configure_linker(tests)
@@ -70,7 +70,7 @@ target_link_libraries(
   constexpr_tests
   PRIVATE torii::torii_warnings
           torii::torii_options
-          torii::sample_library
+          torii::torii_library
           Catch2::Catch2WithMain)
 
 torii_configure_linker(constexpr_tests)
@@ -95,7 +95,7 @@ target_link_libraries(
   relaxed_constexpr_tests
   PRIVATE torii::torii_warnings
           torii::torii_options
-          torii::sample_library
+          torii::torii_library
           Catch2::Catch2WithMain)
 target_compile_definitions(relaxed_constexpr_tests PRIVATE -DCATCH_CONFIG_RUNTIME_STATIC_REQUIRE)
 
