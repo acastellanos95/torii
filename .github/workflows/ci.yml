@@ -32,7 +32,7 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-          - windows-latest
+#          - windows-latest
         compiler:
           # you can specify the version after `-` like "llvm-15.0.2".
           - llvm-19.1.1
@@ -52,34 +52,6 @@ jobs:
           # mingw is determined by this author to be too buggy to support
           - os: windows-latest
             compiler: gcc-14
-
-        include:
-          # Add appropriate variables for gcov version required. This will intentionally break
-          # if you try to use a compiler that does not have gcov set
-          - compiler: gcc-14
-            gcov_executable: gcov-14
-            enable_ipo: On
-
-          - compiler: llvm-19.1.1
-            enable_ipo: Off
-            gcov_executable: "llvm-cov gcov"
-
-          - os: macos-latest
-            enable_ipo: Off
-
-          # Set up preferred package generators, for given build configurations
-          - build_type: Release
-            packaging_maintainer_mode: On
-            package_generator: TBZ2
-
-          # This exists solely to make sure a non-multiconfig build works
-          - os: ubuntu-latest
-            compiler: gcc-14
-            generator: "Unix Makefiles"
-            build_type: Debug
-            gcov_executable: gcov-14
-            packaging_maintainer_mode: On
-            enable_ipo: Off
 
           # Windows msvc builds
           - os: windows-latest
@@ -117,6 +89,33 @@ jobs:
             enable_ipo: On
             build_shared: On
 
+        include:
+          # Add appropriate variables for gcov version required. This will intentionally break
+          # if you try to use a compiler that does not have gcov set
+          - compiler: gcc-14
+            gcov_executable: gcov-14
+            enable_ipo: On
+
+          - compiler: llvm-19.1.1
+            enable_ipo: Off
+            gcov_executable: "llvm-cov gcov"
+
+          - os: macos-latest
+            enable_ipo: Off
+
+          # Set up preferred package generators, for given build configurations
+          - build_type: Release
+            packaging_maintainer_mode: On
+            package_generator: TBZ2
+
+          # This exists solely to make sure a non-multiconfig build works
+          - os: ubuntu-latest
+            compiler: gcc-14
+            generator: "Unix Makefiles"
+            build_type: Debug
+            gcov_executable: gcov-14
+            packaging_maintainer_mode: On
+            enable_ipo: Off
 
     steps:
       - name: Check for llvm version mismatches

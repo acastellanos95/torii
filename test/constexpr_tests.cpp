@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include <torii/sample_library.hpp>
+#include <torii/torii.hpp>
 
 TEST_CASE("Factorials are computed with constexpr", "[factorial]")
 {

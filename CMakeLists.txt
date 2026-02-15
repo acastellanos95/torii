@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.14)
 
 # Disable modules support, this is broken with clang-tidy at the moment
 cmake_policy(SET CMP0155 OLD) 
@@ -111,14 +111,14 @@ include(cmake/PackageProject.cmake)
 
 # Add other targets that you want installed here, by default we just package the one executable
 # we know we want to ship
-torii_package_project(
-  TARGETS
-  intro
-  torii_options
-  torii_warnings
-  # FIXME: this does not work! CK
-  # PRIVATE_DEPENDENCIES_CONFIGURED project_options project_warnings
-)
+#torii_package_project(
+#  TARGETS
+#  intro
+#  torii_options
+#  torii_warnings
+#  # FIXME: this does not work! CK
+#  # PRIVATE_DEPENDENCIES_CONFIGURED project_options project_warnings
+#)
 
 # Experience shows that explicit package naming can help make it easier to sort
 # out potential ABI related issues before they start, while helping you
